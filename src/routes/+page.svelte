@@ -1,4 +1,11 @@
- <h1>Eri-ife Olayinka</h1>
+ <script>
+  import projects from "$lib/projects.json";
+  import Project from "$lib/Project.svelte";
+
+</script>
+
+
+<h1>Eri-ife Olayinka</h1>
      <nav>
         <ul>
             <li><a class="current" href=".">Home</a></li>
@@ -16,4 +23,12 @@
     </p>
     <img src="images/headshot.jpg" alt="Me against a background of red bleachers"
     style="width:600px;height:400px;">
+
+    <h3>Most Recent Projects</h3>
+    <div class="projects-highlights">
+        {#each projects.slice(0,3) as p}
+        <Project data={p} />
+        {/each}
+    </div>
+
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
