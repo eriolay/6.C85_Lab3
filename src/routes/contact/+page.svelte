@@ -1,5 +1,8 @@
 <svelte:head>
-  <title>Contact me</title>
+  
+</svelte:head>
+
+<title>Contact me</title>
 
   <h1>Contact me!</h1>
     <nav>
@@ -28,4 +31,3 @@
         <button>Send</button> 
     </form>
 
-</svelte:head>

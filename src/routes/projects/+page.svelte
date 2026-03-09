@@ -5,7 +5,10 @@
 </script>
 
 <svelte:head>
-  <title>Projects</title>
+  
+</svelte:head>
+
+<title>Projects</title>
 
   <h1>My {projects.length} Projects</h1>
      <nav>
@@ -26,4 +29,3 @@
         
     </div>
 
-</svelte:head>

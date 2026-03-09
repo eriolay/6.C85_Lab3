@@ -3,6 +3,9 @@
   import Project from "$lib/Project.svelte";
 
 </script>
+<svelte:head>
+  
+</svelte:head>
 
 
 <h1>Eri-ife Olayinka</h1>

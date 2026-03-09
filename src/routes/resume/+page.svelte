@@ -1,5 +1,9 @@
 <svelte:head>
-  <title>Resume</title>
+
+
+</svelte:head>
+
+<title>Resume</title>
 
   <h1>Resume</h1>
     <nav>
@@ -37,5 +41,3 @@
 
         </ul>
     </section>
-
-</svelte:head>

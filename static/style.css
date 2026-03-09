@@ -64,17 +64,17 @@ label {
 label, button {
   grid-column: 1 / -1;
 }
-/* 
-image {
+
+img {
   max-width: 100%;
   margin: auto;
-} */
+}
 
-/* .projects {
+.projects, .projects-highlights {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1em;
-} */
+}
 /* 
 article {
   grid-template-rows: subgrid;
