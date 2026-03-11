@@ -4,7 +4,7 @@
         
 
         <article>
-            <h2>{data.title}</h2>
+            <h3>{data.title}</h3>
             <img src={data.image} alt="">
             <p>{data.description}</p>
         </article>
@@ -21,10 +21,8 @@
     grid-row: span 3;
     }
 
-    h2 {
-    margin: 0;
-    line-height: 1.1;
-    text-wrap: balance;
+    h3, p {
+        text-align: center;
     }
 
 </style>

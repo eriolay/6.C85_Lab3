@@ -70,18 +70,18 @@ img {
   margin: auto;
 }
 
-.projects, .projects-highlights {
+.projects, .projects-highlights, .readings {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1em;
 }
-/* 
+
 article {
   grid-template-rows: subgrid;
   grid-row: span 3;
 }
 
-h2 {
+/* h2 {
   margin: 0;
 } */
 

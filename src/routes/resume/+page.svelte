@@ -6,16 +6,7 @@
 <title>Resume</title>
 
   <h1>Resume</h1>
-    <nav>
-        <ul>
-            <li><a href=".">Home</a></li>
-            <li><a href="projects">Projects</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a class="current" href="resume">My Resume</a></li>
-            <li><a href="https://github.com/eriolay" target="_blank">My GitHub</a></li>
-        </ul>
-    </nav>
-
+    
     
     <section>
         <h2>Link to Resume</h2>
