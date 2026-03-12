@@ -2,26 +2,26 @@
     {
         "title": "Sing, Unburied, Sing",
         "author": "Jesmyn Ward",
-        "image": "/images/jesmyn.jpeg",
+        "image": "images/jesmyn.jpeg",
         "review" : "4/5 so far, I'm really engaged."
     },
     {
         "title": "Martyr!",
         "author": "Kaveh Akbar",
-        "image": "/images/martyr.jpeg",
+        "image": "images/martyr.jpeg",
         "review": "3.5/5, it was a great read and it got me out of a reading slump."
 
     },
     {
         "title": "The Philosphy of Modern Song",
         "author": "Bob Dylan",
-        "image": "/images/bobDylan.jpeg",
+        "image": "images/bobDylan.jpeg",
         "review": "idk/5, it was a gift for Marcus so I don't have a rating but I hope he likes it!"
     },
     {
         "title": "Half of a Yellow Sun",
         "author": "Chimamanda Ngozi Adichie",
-        "image": "/images/chim.jpeg",
+        "image": "images/chim.jpeg",
         "review": "idk/5, Megha is reading it and she was really enjoying it (I've only seen the movie but I definitely want to read the book)."
     }
 ]
