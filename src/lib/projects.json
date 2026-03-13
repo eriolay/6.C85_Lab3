@@ -1,19 +1,19 @@
 [
     {
         "title": "My First Project",
-        "image": "/images/project1.jpeg",
+        "image": "images/project1.jpeg",
         "description": "This is a description of my first project. It was a great learning experience and I am proud of the results."
     },
 
     {
         "title": "My Second Project",
-        "image": "/images/project2.jpeg",
+        "image": "images/project2.jpeg",
         "description": "This is a description of my second project. It was a challenging project but I learned a lot and am happy with how it turned out."
     },
 
     {
         "title": "My Third Project",
-        "image": "/images/project3.webp",
+        "image": "images/project3.webp",
         "description": "This is a description of my third project. It was a fun project to work on and I am excited to share it with others."
     }
 ]
