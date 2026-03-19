@@ -18,7 +18,11 @@ ul, li {
   display: contents;
 }
 
-nav {
+input, textarea, button, select {
+  font:inherit;
+}
+
+/* nav {
   display: flex;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -26,8 +30,8 @@ nav {
   margin-bottom: 1em;
   
   
-}
-a:hover {
+} */
+/* a:hover {
   border-bottom-color: var(--color-accent);
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
@@ -39,7 +43,7 @@ a.current {
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
-}
+} */
 a {
   flex: 1;
   text-decoration: none;
@@ -85,10 +89,12 @@ article {
   margin: 0;
 } */
 
-h1 {
-  font-size: 400%;}
+h1{
+  font-size: 400%;
+  text-align: center;}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
+  text-align: center;
 }
