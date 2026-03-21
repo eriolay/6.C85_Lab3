@@ -1,7 +1,13 @@
 <script>
   import projects from "$lib/projects.json";
   import Project from "$lib/Project.svelte";
+  import ProjectNarrative from "$lib/ProjectNarrative.svelte";
+  import Scrolly from "svelte-scrolly";
+  
+  let scrollyProgress = 0
 
+  let years = projects.map(proj => proj.year);
+  let range = Math.max(...years) - Math.min(...years);
 </script>
 
 <svelte:head>
@@ -10,8 +16,14 @@
 
 <title>Projects</title>
 
-  <h1>My {projects.length} Projects</h1>
-     
+  <h1>{projects.length} Projects over {range} Years</h1>
+    
+  <p>Scroll down to see my a timeline of my projects and how they've contributed to my professional and personal life</p>
+
+    <ProjectNarrative />
+
+  <p class="outro">Thanks for scrolling through my project story! Feel free to explore all of the projects at your leisure below.</p>
+
     
     <div class="projects">
     {#each projects as p}
@@ -20,3 +32,8 @@
         
     </div>
 
+    <style>
+      .outro {
+        margin-bottom: 2em;
+      }
+    </style>
