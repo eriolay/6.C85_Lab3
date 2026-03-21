@@ -50,7 +50,7 @@
 
     .step-content {
         border-left-style: solid;
-        border-left-color: --color-accent;
+        border-left-color: oklch(58.493% 0.12539 149.991);
         border-left-width: 4px;
         padding: 1.5rem 2rem;
     }
