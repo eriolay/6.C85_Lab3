@@ -1,19 +1,67 @@
 [
     {
-        "title": "My First Project",
-        "image": "images/project1.jpeg",
-        "description": "This is a description of my first project. It was a great learning experience and I am proud of the results."
+        "title": "My First 6.C85 Visual ",
+        "year": 2026,
+        "image": "/images/proj1.png",
+        "description": "One of my first visualisations for 6.C85",
+        "story": "For our first assignemnt, we were mostly focused on just familiarising oursevles with exploring a dataset. Truthfully, this wasn't acc the first assingment lol it's just the first one I can find because for some reason my A1 has vanished..."
     },
 
     {
-        "title": "My Second Project",
-        "image": "images/project2.jpeg",
-        "description": "This is a description of my second project. It was a challenging project but I learned a lot and am happy with how it turned out."
+        "title": "Reimagining the COVID-19 Spiral",
+        "year": 2026,
+        "image": "/images/proj2.png",
+        "description": "Completely reimagined the COVID-19 spiral visualisation",
+        "story": "This was particualrly fun because I allowed mytself to really play with the design of the visual and how to convey a similar message without getting too lost in details or too carried away with making something eye-catching. I think I learned how to strike that balance (not with this specific design) but it was nice to learn more about those tradeoffs."
     },
 
     {
-        "title": "My Third Project",
-        "image": "images/project3.webp",
-        "description": "This is a description of my third project. It was a fun project to work on and I am excited to share it with others."
+        "title": "My COVID-19 Spiral",
+        "image": "/images/proj3.png",
+        "year": 2026,
+        "description": "Reimgining the spiral but with a more data-driven approach",
+        "story": "This was the first time I really got to play with the data and I think it was a good learning experience to see how the data can be used to create a visualisation that is both informative and visually appealing. I also learned a lot about how to use different tools to create visualisations and how to manipulate data to get the desired outcome."
+    }, 
+    {
+        "title": "Reverse Adversarial Visualisation",
+        "image": "/images/proj4.jpg", 
+        "year": 2026,
+        "description": "Made adversarial visualisation to skew perception of abortion data, then made this to counter that.",
+        "story": "Don't you just love playing devli's advocate? I had a lot of fun making the adversarial visualisation and then making this one to counter it. It was interesting to see how the same data can be used to create two completely different visualisations that convey different messages. It also made me think about how important it is to be critical of the visualisations we see and to always question the data and the design choices that went into creating them."
+    },
+    {
+        "title": "Thou Art Loosed",
+        "image": "/images/proj5.jpg",
+        "year": 2022,
+        "description": "An image from my final project for Joaquin's queer lit class.",
+        "story": "This was such a fun shoot to develop and execute and Sav was a great model. Looking back at this shoot though, I don't know how much I like it lol. I guess because it was for class it was difficult to make it not so on-the-nose, but it just feels too obvious for my taste. Like it feels like such a literal interpretation which I think worked very well for assignment clairty but idk about it as a creative choice."
+    },
+    {
+        "title": "Infinite Board Shoot",
+        "image": "/images/proj6.jpg",
+        "year": 2024,
+        "description": "The (real) launch of my Infinite modelling career (let's pretend Fai's spread didn't happen)",
+        "story": "This was just the board photoshoot for the Infinite issue, I forget what number it was. It was a fun time and I honestly really liekd the theme. This was also one of the first times I'd gotten my picture taken on a professional camera where I actually really liked how I looked so that was great. I also love how I styled myself like it wasn't anything too crazy but it feels very me like just including those pops of things that excite me (the red sheer shirt underneath)."
+    },
+    {
+        "title": "First Portfolio Attempt",
+        "image": "/images/proj7.png",
+        "year": 2023,
+        "description": "My first attempt at making a portfolio website",
+        "story": "This was actually 2024 but that's not important. I tried using what I was learning from my BBU internship to make a portfolio using AngularJS pero I never finished it. I think I wasn;t the biggest fan of the design/how it looked to begin with so there wasn't much motivation to keep working on it. I like this one that we've been building in this class much more and I also really really appreciate how they've structred these labs around us building our portfolios like that's so cool and genuinely helpful."
+    },
+    {
+        "title": "Cute Selfie but Painterly",
+        "image": "/images/proj8.png",
+        "year": 2025,
+        "description": "A cute selfie but with a painterly effect",
+        "story": "This was just a tester image I used when i was working on one of my computational photography assignments. I wanted to test my function then I realised maybe I didn't want to turn in a cute selfie as my assignment lol but I kept it. I really like the photo itself like I felt really pretty in it and I loveeee that yellow top hehe."
+    },
+    {
+        "title": "Photoshop is my Passion",
+        "image": "/images/proj9.png",
+        "year": 2025,
+        "description": "This was just a cool screenshot I took while I was editing one of the photos from the AFROPUNK shoot.",
+        "story": "You know sometimes I settle into thinking I'm a lackluster photographer and then I see something like this that reminds me of how much I'm capable of and how much I love it and I feel less bad but I would like to instead let myself feel good and proud of myself but also more excited to leanr and explore more. Vamos a ver lo que el futuro tiene para mi!"
     }
 ]
