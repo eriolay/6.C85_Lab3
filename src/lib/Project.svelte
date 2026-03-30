@@ -6,7 +6,7 @@
         <article>
             <h3>{data.title}</h3>
             <img src={data.image} alt="">
-            <p>{data.description}</p>
+            <p><b>{data.year} |</b> {data.description}</p>
         </article>
 
 <style>
