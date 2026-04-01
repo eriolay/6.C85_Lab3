@@ -7,111 +7,107 @@
     export let data = [];
 
 
-    let margin = { top: 40, right: 150, bottom: 80, left: 60 };
+    let margin = { top: 40, right: 50, bottom: 35, left: 80 };
     let innerWidth  = width  - margin.left - margin.right;
     let innerHeight = height - margin.top  - margin.bottom;
 
-    $: xScale = d3.scaleBand()
-    .domain(data.map(d => d.label))
-    .range([0, innerWidth])
-    .padding(0.2);
-
-    $: yScale = d3.scaleLinear()
+    $: xScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.value) || 1])
-        .range([innerHeight, 0]);
+        .range([0, innerWidth]);
 
-    $: colorScale = d3.scaleOrdinal(d3.schemeTableau10)
+    $: yScale = d3.scaleBand()
+        .domain(data.map(d => d.label))
+        .range([0, innerHeight])
+        .padding(0.2);
+
+    $: colorScale = d3.scaleOrdinal(d3.schemeBrBG[9])
         .domain(data.map(d => d.label));
-
 
     let xAxis, yAxis;
 
-    // $: if (xAxis && yAxis) {
-    // d3.select(xAxis).call(d3.axisBottom(xScale));
-    // d3.select(yAxis).call(d3.axisLeft(yScale));
-    // }
+
     $: if (xAxis && yAxis) {
-    d3.select(xAxis).call(d3.axisBottom(xScale));
-    d3.select(yAxis).call(
-        d3.axisLeft(yScale)
+    d3.select(xAxis).call(
+        d3.axisBottom(xScale)
             .tickFormat(d => Number.isInteger(d) ? d : "")
-            .tickValues(d3.range(0, d3.max(data, d => d.value) + 1))
+            .tickValues(d3.range(0, d3.max(data, d => d.value) + 1, 50))
         );
-    }
+    d3.select(yAxis).call(d3.axisLeft(yScale));
+}
 
     $: maxBar = d3.greatest(data, d => d.value);
 
 
 
-
 </script>
-
-
 
 <div class="container">
     <svg viewBox="0 0 {width} {height}">
+    <!-- chart title-->
         <text
         x={margin.left + innerWidth / 2}
         y={margin.top / 2}
         text-anchor="middle"
         class="chart-title">
-        Projects per Year
+        Programming Languages by Count
         </text>
-
-        <g transform="translate({margin.left}, {margin.top + innerHeight})"bind:this={xAxis} />
-        
-             
-        <g transform="translate({margin.left}, {margin.top})" bind:this={yAxis} />
-            
-             
+        <!-- x-axis -->
+        <g transform="translate({margin.left}, {margin.top + innerHeight})"
+        bind:this={xAxis} />
+        <!-- y-axis -->
+        <g transform="translate({margin.left}, {margin.top})"
+        bind:this={yAxis} />
         <g transform="translate({margin.left}, {margin.top})">
-            <!-- draw the bars-->
             {#each data as d}
                 <rect
-                    x={xScale(d.label)}
-                    y={yScale(d.value)}
-                    width={xScale.bandwidth()}
-                    height={innerHeight - yScale(d.value)}
+                    x={0}
+                    y={yScale(d.label)}
+                    width={xScale(d.value)}
+                    height={yScale.bandwidth()}
                     fill={colorScale(d.label)}
                 />
             {/each}
+
             {#if maxBar}
                 <!-- highlight outline around the tallest bar -->
                 <rect
-                    x={xScale(maxBar.label)}
-                    y={yScale(maxBar.value)}
-                    width={xScale.bandwidth()}
-                    height={innerHeight - yScale(maxBar.value)}
+                    x={0}
+                    y={yScale(maxBar.label)}
+                    width={xScale(maxBar.value)}
+                    height={yScale.bandwidth()}
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
                 />
+                
                 <!-- leader line -->
                 <line
-                    x1={xScale(maxBar.label) + xScale.bandwidth()}
-                    y1={yScale(maxBar.value) + (innerHeight - yScale(maxBar.value)) / 3}
-                    x2={xScale(maxBar.label) + xScale.bandwidth() + 30}
-                    y2={yScale(maxBar.value) + (innerHeight - yScale(maxBar.value)) / 3}
+                    x1={xScale(maxBar.value) / 2}
+                    y1={yScale(maxBar.label) - 30}
+                    x2={xScale(maxBar.value) / 2}
+                    y2={yScale(maxBar.label)}
                     stroke="currentColor"
                     stroke-width="1"
                 />
+
                 <!-- annotation text at end of leader line -->
                 <text
-                    x={xScale(maxBar.label) + xScale.bandwidth() + 35}
-                    y={yScale(maxBar.value) + (innerHeight - yScale(maxBar.value)) / 3}
+                    x={xScale(maxBar.value) / 4}
+                    y={yScale(maxBar.label) - 35}
                     dominant-baseline="middle"
                     class="annotation">
-                    Year with most projects
+                    Language with most lines
                 </text>
             {/if}
+
 
             <!-- x-axis label -->
             <text
                 x={innerWidth / 2}
-                y={innerHeight + margin.bottom + 10}
+                y={innerHeight + margin.bottom}
                 text-anchor="middle"
                 class="axis-label">
-                Year
+                Number of Lines
             </text>
 
             <!-- y-axis label -->
@@ -121,9 +117,8 @@
                 text-anchor="middle"
                 transform="rotate(-90)"
                 class="axis-label">
-                Number of Projects
+                Language
             </text>
-
         </g>
     </svg>
     <ul class="legend">
@@ -139,27 +134,10 @@
 
 
 <style>
-
-    .annotation {
-        font-size: 0.5em;
-        fill: black;
-        font-style: italic;
-    }
-
-
-    .axis-label {
-        font-size: 0.8em;
-        fill: gray;
-    }
-    .chart-title {
-        font-size: 1em;
-        font-weight: bold;
-        fill: currentColor;
-    }
     svg {
-        max-width: 100%;
-        height: auto;
-        overflow: visible;
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
     }
 
     .container {
@@ -189,4 +167,22 @@
     em {
         margin-left: 0.5rem;
     }
+
+    .chart-title {
+        font-size: 1em;
+        font-weight: bold;
+        fill: currentColor;
+    }
+
+    .axis-label {
+        font-size: 0.8em;
+        fill: gray;
+    }
+
+    .annotation {
+        font-size: 0.5em;
+        fill: black;
+        font-style: italic;
+    }
+
 </style>
