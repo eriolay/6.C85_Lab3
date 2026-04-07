@@ -2,9 +2,10 @@
     import * as d3 from 'd3';
 
     let width = 400;
-    let height = 300;
+    let height = 200;
 
     export let data = [];
+    export let title = "";
 
 
     let margin = { top: 40, right: 50, bottom: 35, left: 80 };
@@ -29,8 +30,9 @@
     $: if (xAxis && yAxis) {
     d3.select(xAxis).call(
         d3.axisBottom(xScale)
-            .tickFormat(d => Number.isInteger(d) ? d : "")
-            .tickValues(d3.range(0, d3.max(data, d => d.value) + 1, 50))
+            .ticks(Math.min(d3.max(data, d => d.value), 10))
+            // .tickFormat(d => Number.isInteger(d) ? d : "")
+            // .tickValues(d3.range(0, d3.max(data, d => d.value) + 1, 50))
         );
     d3.select(yAxis).call(d3.axisLeft(yScale));
 }
@@ -49,7 +51,7 @@
         y={margin.top / 2}
         text-anchor="middle"
         class="chart-title">
-        Programming Languages by Count
+        {title}
         </text>
         <!-- x-axis -->
         <g transform="translate({margin.left}, {margin.top + innerHeight})"
@@ -80,7 +82,7 @@
                     stroke-width="2"
                 />
                 
-                <!-- leader line -->
+                <!-- leader line
                 <line
                     x1={xScale(maxBar.value) / 2}
                     y1={yScale(maxBar.label) - 30}
@@ -88,13 +90,13 @@
                     y2={yScale(maxBar.label)}
                     stroke="currentColor"
                     stroke-width="1"
-                />
+                /> -->
 
                 <!-- annotation text at end of leader line -->
                 <text
-                    x={xScale(maxBar.value) / 4}
-                    y={yScale(maxBar.label) - 35}
-                    dominant-baseline="middle"
+                    x={xScale(maxBar.value) + 5}
+                    y={yScale(maxBar.label) + 20}
+                    dominant-baseline="start"
                     class="annotation">
                     Language with most lines
                 </text>

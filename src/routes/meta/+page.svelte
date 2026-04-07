@@ -4,6 +4,12 @@ import { base } from '$app/paths';
 import { onMount } from 'svelte';
 import * as d3 from 'd3';
 import BarHorizontal from '$lib/BarHorizontal.svelte';
+import {
+	computePosition,
+	autoPlacement,
+	offset,
+} from '@floating-ui/dom';
+
 
 let locData = [];
 
@@ -44,7 +50,6 @@ $: rScale = d3.scaleSqrt()
             .domain([minLines, maxLines])
             .range([5, 30]);
 
-console.log(rScale);
 
 let xAxis, yAxis, yAxisGridlines;
 $: {
@@ -88,21 +93,70 @@ onMount(async () => {
 
     commits = d3.sort(commits, d => -d.totalLines);
 
-    console.log(commits);
+    // console.log(commits);
 });
 
 
 
 // console.log("check", minRadius, maxRadius);
 
-$: langData = d3.rollups(locData, v => v.length, d => d.type)
-        .map(([type, count]) => ({ label: type, value: count }));
+$: selectedLines = (clickedCommits.length > 0 ? clickedCommits.flatMap(d => d.lines) : locData);
+
+$: selectedCounts = d3.rollup(
+                        selectedLines,
+                        v => v.length,
+                        d => d.type
+                    );
+
+$: allTypes = Array.from(new Set(locData.map(d => d.type)));
+
+$: langData = allTypes.map(type => ({label: String(type), value: selectedCounts.get(type) || 0}));
+
+// $: langData = d3.rollups(locData, v => v.length, d => d.type)
+//         .map(([type, count]) => ({ label: type, value: count }));
 
 
 let hoveredIndex = -1;
 $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
 
- 
+
+let commitTooltip;
+let tooltipPosition = {x: 0, y: 0};
+
+
+async function dotInteraction (index, evt) {
+    let hoveredDot = evt.target;
+	if (evt.type === "mouseenter") {
+		// dot hovered
+        hoveredIndex = index;
+        tooltipPosition = await computePosition(hoveredDot, commitTooltip, {
+			strategy: "fixed", // because we use position: fixed
+			middleware: [
+				offset(5), // spacing from tooltip to dot
+				autoPlacement() // see https://floating-ui.com/docs/autoplacement
+			],
+		});      
+	}
+	else if (evt.type === "mouseleave") {
+		// dot unhovered
+        hoveredIndex = -1;
+	}
+    else if (evt.type === "click") {
+        let commit = commits[index]
+        if (!clickedCommits.includes(commit)) {
+            // Add the commit to the clickedCommits array
+            clickedCommits = [...clickedCommits, commit];
+        }
+        else {
+                // Remove the commit from the array
+                clickedCommits = clickedCommits.filter(c => c !== commit);
+        }
+    }
+
+}
+
+let clickedCommits = [];
+
 
 
 </script>
@@ -129,17 +183,19 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
     <g class="dots">
         {#each commits as commit, index }
             <circle
-                on:mouseenter={evt => hoveredIndex = index}
-                on:mouseleave={evt => hoveredIndex = -1}
+                class:selected={ clickedCommits.includes(commit) }
+                on:click={ evt => dotInteraction(index, evt)}
+                on:mouseenter={evt => dotInteraction(index, evt)}
+                on:mouseleave={evt => dotInteraction(index, evt)}
                 cx={ xScale(commit.datetime) }
                 cy={ yScale(commit.hourFrac) }
                 r={ rScale(commit.totalLines) }
                 fill=darkgreen
             />
         {/each}
-        
+       
 </svg>
-<dl class="info tooltip">
+<dl class="info tooltip" bind:this={commitTooltip} hidden={hoveredIndex === -1} style="top: {tooltipPosition.y}px; left: {tooltipPosition.x}px">
     <dt>Author</dt>
     <dd>{ hoveredCommit.author }</dd>
 
@@ -158,7 +214,7 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
 </dl>
 
 
-<BarHorizontal data={langData}/>
+<BarHorizontal data={langData} title={clickedCommits.length > 0 ? "Lines of Code: Selected Commits" : "Lines of Code: Website Breakdown"}/>
 
 
 
@@ -192,6 +248,13 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
         grid-template-columns: auto 1fr; /* labels | values */
         gap: 0.25em 1em; /* row gap | column gap */
         margin: 0;
+        transition-duration: 500ms;
+        transition-property: opacity, visibility;
+
+        &[hidden]:not(:hover, :focus-within) {
+            opacity: 0;
+            visibility: hidden;
+        }
     } 
     dl.info dt,
     dl.info dd {
@@ -219,6 +282,10 @@ $: hoveredCommit = commits[hoveredIndex] ?? hoveredCommit ?? {};
         box-shadow: gray 5px 5px 20px 2px;
         padding: 10px;
         }
+    .selected {
+        fill: gray;
+    }   
+
 
 </style>
 
