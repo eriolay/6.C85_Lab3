@@ -46,21 +46,24 @@ onMount(async () => {
 <h1>Eri-ife Olayinka</h1>
      
 
-    <p>Hello hello! I am here and this is my homepage for my portfolio. This is actually my second time attempting to design a portfolio for myself so let's hope it acc sticks this time lol.
+    <p>HIIIIII Hello hello! I am here and this is my homepage for my portfolio. This is actually my second time attempting to design a portfolio for myself so let's hope it acc sticks this time lol.
         I'm so curious about how this will turn out and how much this class will actually teach me about styling webpages. I wonder if I'll walk away from this class feeling confident in my ability to design a dynamic and intresting webpage. 
         I love seeing people's portfolios that really reflect them and their work and I hope to be able to do the same with mine hehe.
     </p>
-    <img src="images/headshot.jpg" alt="Me against a background of red bleachers"
+    <div class="headshot">
+        <img src="images/headshot.jpg" alt="Me against a background of red bleachers"
     style="width:600px;height:400px;">
+    </div>
+    
 
 
-    {#if loading}
+    <!-- {#if loading}
         <p>Loading...</p>
     {:else if error}
         <p>Something went wrong: {error.message}</p>
-    {:else}
+    {:else} -->
         <!-- The data is {JSON.stringify(githubData)} -->
-         <section>
+         <!-- <section>
             <h2>My Github Stats</h2>
             <dl>
                 <dt>Followers: </dt>
@@ -74,7 +77,7 @@ onMount(async () => {
             </dl>
          </section>
     {/if}
-
+ -->
 
     <h2>Most Recent Projects</h2>
     <div class="projects-highlights">
@@ -83,18 +86,25 @@ onMount(async () => {
         {/each}
     </div>
 
-    <h2>My {readings.length} Most Recent Books</h2>
+    <!-- <h2>My {readings.length} Most Recent Books</h2>
     <div class="readings">
         {#each readings as r}
         <ReadingItem data={r} />
         {/each}
-    </div>
+    </div> -->
 
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
 
 
 <style>
+    .headshot {
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        align-items: center;     /* Centers vertically */
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+
     dl {
         display: grid;
         grid-template-columns: repeat(4, 1fr);  
