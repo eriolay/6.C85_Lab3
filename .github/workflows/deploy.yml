@@ -36,8 +36,15 @@ jobs:
         run: |
           npm run build
 
+      - name: Inspect build output
+        run: |
+          echo "===== BUILD FILES ====="
+          find build -type f | sort
+          echo "===== INDEX.HTML ====="
+          sed -n '1,30p' build/index.html
+
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "build/"
 
